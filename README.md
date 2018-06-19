@@ -19,35 +19,6 @@ kubectl apply -f kubernetes/fluentd-daemonset-(papertrail,loggly).yaml
 
 The Docker [image](https://quay.io/repository/solarwinds/fluentd-kubernetes) that's used in the DaemonSet is buillt from `docker/Dockerfile` in this repo.
 
-## Docker
-
-**Configuration**
-
-The fluentd process expects a fluentd configuration file at: `/fluentd/etc/fluent.conf`
-
-The Docker image bundles a default `fluent.conf` as well as other import-able fluentd config files.
-
-The Kubernetes assets are a good example of overriding the default `fluent.conf` and importing configurations for things such as gathering pod logs from kubernetes or journald logs from systemd.
-
-**Plugins**
-
-This Docker image bundles the following (optional) fluentd plugins:
-- [fluent-plugin-papertrail](https://github.com/solarwinds/fluent-plugin-papertrail)
-- [fluent-plugin-loggly-syslog](https://github.com/solarwinds/fluent-plugin-loggly-syslog)
-- [fluent-plugin-systemd](https://github.com/reevoo/fluent-plugin-systemd)
-- [fluent-plugin-kubernetes_metadata_input](https://github.com/ViaQ/fluent-plugin-kubernetes_metadata_input)
-- [fluent-plugin-kubernetes_metadata_filter](https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter)
-
-The papertrail plugin allows us to treat Papertrail accounts as outputs.
-
-The loggly-syslog plugin allows us to treat Loggly accounts as outputs using the syslog protocol.
-
-The systemd plugin allows us to treat a host's journald logs as fluent input. The image is based on Debian, so that we can easily bundle the required systemd libraries.
-
-The kubernetes_metadata_input plugin lets us treat the Kubernetes Event API as fluent input.
-
-The kubernetes_metadata_filter plugin lets us recognize and bind Kubernetes specific metadata to logs from Kubernetes pods.
-
 ## Advanced Usage
 
 ### Kubernetes Annotations
@@ -87,6 +58,33 @@ If you'd like to redirect Kubernetes API Server Audit logs to a seperate Papertr
 ```
 
 This requires you to configure an [audit policy file](https://kubernetes.io/docs/tasks/debug-application-cluster/audit/) on your cluster.
+
+### Docker Details
+
+The fluentd process expects a fluentd configuration file at: `/fluentd/etc/fluent.conf`
+
+The Docker image bundles a default `fluent.conf` as well as other import-able fluentd config files.
+
+The Kubernetes assets are a good example of overriding the default `fluent.conf` and importing configurations for things such as gathering pod logs from kubernetes or journald logs from systemd.
+
+**Plugins**
+
+This Docker image bundles the following (optional) fluentd plugins:
+- [fluent-plugin-papertrail](https://github.com/solarwinds/fluent-plugin-papertrail)
+- [fluent-plugin-loggly-syslog](https://github.com/solarwinds/fluent-plugin-loggly-syslog)
+- [fluent-plugin-systemd](https://github.com/reevoo/fluent-plugin-systemd)
+- [fluent-plugin-kubernetes_metadata_input](https://github.com/ViaQ/fluent-plugin-kubernetes_metadata_input)
+- [fluent-plugin-kubernetes_metadata_filter](https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter)
+
+The papertrail plugin allows us to treat Papertrail accounts as outputs.
+
+The loggly-syslog plugin allows us to treat Loggly accounts as outputs using the syslog protocol.
+
+The systemd plugin allows us to treat a host's journald logs as fluent input. The image is based on Debian, so that we can easily bundle the required systemd libraries.
+
+The kubernetes_metadata_input plugin lets us treat the Kubernetes Event API as fluent input.
+
+The kubernetes_metadata_filter plugin lets us recognize and bind Kubernetes specific metadata to logs from Kubernetes pods.
 
 ## Development
 
