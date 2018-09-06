@@ -12,6 +12,7 @@ RUN apt-get update \
     && gem install fluent-plugin-systemd -v 0.3.1 \
     && gem install fluent-plugin-papertrail -v 0.2.5 \
     && gem install fluent-plugin-loggly-syslog -v 0.0.2 \
+    && gem install fluent-plugin-rewrite-tag-filter -v 2.0.2 \
     && gem install fluent-plugin-kubernetes_metadata_input -v 0.21.11 \
     && gem install fluent-plugin-kubernetes_metadata_filter -v 2.0.0 \
     && SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove \
