@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.1.1-debian
+FROM fluent/fluentd:v1.2-debian
 
 USER root
 WORKDIR /home/fluent
@@ -14,7 +14,7 @@ RUN apt-get update \
     && gem install fluent-plugin-loggly-syslog -v 0.0.2 \
     && gem install fluent-plugin-rewrite-tag-filter -v 2.0.2 \
     && gem install fluent-plugin-kubernetes_metadata_input -v 0.21.11 \
-    && gem install fluent-plugin-kubernetes_metadata_filter -v 2.0.0 \
+    && gem install fluent-plugin-kubernetes_metadata_filter -v 2.1.2 \
     && SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove \
                   -o APT::AutoRemove::RecommendsImportant=false \
                   $BUILDDEPS \
