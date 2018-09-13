@@ -19,6 +19,46 @@ kubectl apply -f kubernetes/fluentd-daemonset-(papertrail,loggly).yaml
 
 The Docker [image](https://quay.io/repository/solarwinds/fluentd-kubernetes) that's used in the DaemonSet is buillt from `docker/Dockerfile` in this repo.
 
+If you're deploying this to a cluster with RBAC and to a namespace where you need to explicitly spell out your RBAC privileges, reference this snippet for a ServiceAccount below. You'll need to explicitly attach this ServiceAccount to the DaemonSet above:
+
+```
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: fluentd-logging
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - pods
+    verbs:
+      - get
+      - list
+      - watch
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: fluentd-logger
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fluentd-logging
+subjects:
+- kind: ServiceAccount
+  name: fluentd-logging
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd-logging
+  namespace: kube-system
+---
+```
+
 ## Advanced Usage
 
 ### Kubernetes Annotations
