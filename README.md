@@ -127,7 +127,7 @@ The kubernetes_metadata_input plugin lets us treat the Kubernetes Event API as f
 
 The kubernetes_metadata_filter plugin lets us recognize and bind Kubernetes specific metadata to logs from Kubernetes pods.
 
-The detect-exceptions plugin allows us to recognize multi-line error messages, from multiple languages, and combine them into single events. This isn't enabled by any of the included manifests.
+The detect-exceptions plugin allows us to recognize multi-line error messages, from multiple languages, and combine them into single events. This is disabled by default in all of the included manifests.
 
 ## Development
 
