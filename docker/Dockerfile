@@ -15,6 +15,7 @@ RUN apt-get update \
     && gem install fluent-plugin-rewrite-tag-filter -v 2.0.2 \
     && gem install fluent-plugin-kubernetes_metadata_input -v 0.21.11 \
     && gem install fluent-plugin-kubernetes_metadata_filter -v 2.1.2 \
+    && gem install fluent-plugin-detect-exceptions -v 0.0.11 \
     && SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove \
                   -o APT::AutoRemove::RecommendsImportant=false \
                   $BUILDDEPS \
