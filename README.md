@@ -115,6 +115,7 @@ This Docker image bundles the following (optional) fluentd plugins:
 - [fluent-plugin-systemd](https://github.com/reevoo/fluent-plugin-systemd)
 - [fluent-plugin-kubernetes_metadata_input](https://github.com/ViaQ/fluent-plugin-kubernetes_metadata_input)
 - [fluent-plugin-kubernetes_metadata_filter](https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter)
+- [fluent-plugin-detect-exceptions](https://github.com/GoogleCloudPlatform/fluent-plugin-detect-exceptions)
 
 The papertrail plugin allows us to treat Papertrail accounts as outputs.
 
@@ -125,6 +126,8 @@ The systemd plugin allows us to treat a host's journald logs as fluent input. Th
 The kubernetes_metadata_input plugin lets us treat the Kubernetes Event API as fluent input.
 
 The kubernetes_metadata_filter plugin lets us recognize and bind Kubernetes specific metadata to logs from Kubernetes pods.
+
+The detect-exceptions plugin allows us to recognize multi-line error messages, from multiple languages, and combine them into single events. This isn't enabled by any of the included manifests.
 
 ## Development
 
