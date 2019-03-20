@@ -11,7 +11,7 @@ RUN apt-get update \
     && echo 'gem: --no-document' >> /etc/gemrc \
     && gem install fluent-plugin-systemd -v 0.3.1 \
     && gem install fluent-plugin-papertrail -v 0.2.7 \
-    && gem install fluent-plugin-loggly-syslog -v 0.0.2 \
+    && gem install fluent-plugin-loggly-syslog -v 0.0.4 \
     && gem install fluent-plugin-rewrite-tag-filter -v 2.0.2 \
     && gem install fluent-plugin-kubernetes_metadata_input -v 0.21.11 \
     && gem install fluent-plugin-kubernetes_metadata_filter -v 2.1.2 \
