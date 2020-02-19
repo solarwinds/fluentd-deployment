@@ -10,7 +10,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-        k8s-app: fluentd-papertrail
+      k8s-app: fluentd-papertrail
   updateStrategy:
     type: RollingUpdate
   template:
